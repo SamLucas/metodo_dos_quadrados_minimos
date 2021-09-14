@@ -1,7 +1,7 @@
 const QuadradosMinimos = (points) => {
 
   // let x = [0.3, 2.7, 4.5, 5.9, 7.8];
-  // let y = [1.8, 1.9, 3.1, 3.9, 3.3];
+  // let y = [1.8, 1.9, 3.1, 3.9, 3.3]; 
 
   let x = points.map(e => parseFloat(e.x))
   let y = points.map(e => parseFloat(e.y))
@@ -43,6 +43,10 @@ const QuadradosMinimos = (points) => {
     SomaQuadradoDistacia: SomaQuadradoDistacia.toFixed(4),
     B0: B0.toFixed(4),
     B1: B1.toFixed(4),
+    totalX: pontos.reduce((s, { x }) => s += x, 0).toFixed(4),
+    totalY: pontos.reduce((s, { y }) => s += y, 0).toFixed(4),
+    totalU: pontos.reduce((s, { newY }) => s += parseFloat(newY), 0).toFixed(4),
+    totalD: SomaQuadradoDistacia.toFixed(4)
   }
 }
 
