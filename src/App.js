@@ -17,6 +17,9 @@ import {
   Footer
 } from "./styles"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import IconTrash from "./assets/trash.png"
 import IconGitHub from "./assets/github.png"
 
@@ -46,7 +49,7 @@ function App() {
       document.getElementById("inputX").value = ""
       document.getElementById("inputY").value = ""
     } else {
-      alert(`Os pontos indicados já foram cadastrados.`)
+      notify(`Os pontos indicados já foram cadastrados.`)
     }
   }
 
@@ -59,11 +62,21 @@ function App() {
       setPoints(refactory)
 
     } catch (e) {
-      alert("Não foi possivel capturar os pontos")
+      notify("Não foi possivel capturar os pontos")
     }
   }
 
   const removeData = indice => setPoints(s => s.filter((i, idx) => idx !== indice))
+
+  const notify = (msg) => toast.error(msg, {
+    position: "top-left",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 
   var widthGraph = (document.documentElement.clientWidth / 2) - 30
   var heightGraph = document.documentElement.clientHeight - 30
@@ -85,6 +98,7 @@ function App() {
             <p>Uma técnica de otimização matemática que procura encontrar o melhor ajuste para um conjunto de dados tentando minimizar a soma dos quadrados das diferenças entre o valor estimado e os dados observados.</p>
             <p>Adicione novos valores na tabela para realizar o cálculo da equação:</p>
           </Header>
+
 
           <ContentInputXY>
             <input type="number" id="inputX" onChange={e => setX(e.target.value)} />
@@ -204,6 +218,9 @@ function App() {
           <Tooltip />
         </LineChart>
       </ContentGraph>
+
+      <ToastContainer />
+
     </Container>
   );
 }
