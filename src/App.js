@@ -62,7 +62,7 @@ function App() {
       setPoints(refactory)
 
     } catch (e) {
-      notify("Não foi possivel capturar os pontos")
+      notify("Não foi possível capturar os pontos!")
     }
   }
 
@@ -119,7 +119,7 @@ function App() {
               rows="7"
               placeholder={TextPlaceholder}
             />
-            <button onClick={registerNewPointsTextArea}>Adicionar</button>
+            <button onClick={registerNewPointsTextArea}>Adicionar e Calcular</button>
           </ContentInputJson>
 
           {points.length > 0 && <>
