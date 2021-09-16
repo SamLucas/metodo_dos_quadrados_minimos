@@ -4,15 +4,21 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
+  height: 100vh;
   padding: 0px;
 
 `;
 
 export const Side = styled.div`
-  display: block;
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 
-  padding: 40px; 
+  justify-content: space-between;
+  align-items: flex-end;
+
+  overflow: scroll;
+
+  padding: 40px;
 `;
 
 export const Header = styled.div`
@@ -35,12 +41,12 @@ export const ContentInputXY = styled.div`
   input {
     border: 1px solid #cecece;
     border-radius: 5px;
-    padding: 10px;    
+    padding: 10px;
   }
 
   button {
     border: none;
-    border-radius: 5px;    
+    border-radius: 5px;
     cursor: pointer;
 
     background-color: #2d4c72;
@@ -57,7 +63,7 @@ export const ContentInputJson = styled.div`
     border-radius: 10px;
     max-width: 100%;
   }
-  
+
   button {
     margin: 10px 0px;
     padding: 20px;
@@ -80,8 +86,10 @@ export const TableXY = styled.div`
   width: 100%;
   height: 25vh;
 
+  margin-top: 40px;
+
   .row {
-    
+
     display: flex;
     flex-direction: row;
 
@@ -103,12 +111,14 @@ export const TableXY = styled.div`
     }
 
     .contentPoints {
-      
+
       display: flex;
       flex-direction: row;
-    
+
+      overflow: scroll;
+
       .contentPointsAdd {
-    
+
         margin-left: 5px;
         cursor: pointer;
 
@@ -116,7 +126,7 @@ export const TableXY = styled.div`
           display: none;
           height: 0px;
         }
-        
+
         &:hover {
 
           .ContentValue {
@@ -127,7 +137,7 @@ export const TableXY = styled.div`
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            
+
             background-color: #2d4c72;
 
             width: 40px;
@@ -149,9 +159,9 @@ export const TableXY = styled.div`
               color: white;
               padding-bottom: 15px;
             }
-          }         
+          }
         }
-        
+
         .ContentValue {
           display: flex;
           justify-content: center;
@@ -167,7 +177,7 @@ export const TableXY = styled.div`
           height: 40px;
 
           margin: 5px 0px;
-          
+
         }
       }
     }
@@ -182,14 +192,14 @@ export const TableResult = styled.div`
 
     thead {
     }
-    
+
     thead tr th {
       padding: 10px;
       background-color: rgba(56,96,143,0.8);
       border-radius: 5px;
       color: white;
     }
-    
+
     tbody tr td {
       padding: 5px;
       background-color: rgba(56,96,143,0.1);
@@ -212,13 +222,31 @@ export const TextSepator = styled.p`
   font-family: 'Dancing Script', cursive;
 `;
 
-export const ContentGraph = styled.div`
-  
-  /* position: relative;
-  bottom: 0;
-  right: 0;
-  top: 0; */
-/*   
-  height: 100vh;
-  width: 100vw; */
+export const ContentGraph = styled.div``;
+
+export const Footer = styled.div`
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    padding: 40px 0px 20px;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+  }
+
 `;

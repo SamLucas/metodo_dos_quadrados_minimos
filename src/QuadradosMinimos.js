@@ -30,6 +30,8 @@ const QuadradosMinimos = (points) => {
 
     data.x = a
     data.y = y[idx]
+    data.xQuadrado = (a * a).toFixed(4)
+    data.xy = (a * y[idx]).toFixed(4)
 
     data.newY = (B0 + (B1 * a)).toFixed(4);
     data.newX = (y[idx] - data.newY).toFixed(4);
@@ -45,6 +47,8 @@ const QuadradosMinimos = (points) => {
     B1: B1.toFixed(4),
     totalX: pontos.reduce((s, { x }) => s += x, 0).toFixed(4),
     totalY: pontos.reduce((s, { y }) => s += y, 0).toFixed(4),
+    totalX2: pontos.reduce((s, { xQuadrado }) => s += parseFloat(xQuadrado), 0).toFixed(4),
+    totalXY: pontos.reduce((s, { xy }) => s += parseFloat(xy), 0).toFixed(4),
     totalU: pontos.reduce((s, { newY }) => s += parseFloat(newY), 0).toFixed(4),
     totalD: SomaQuadradoDistacia.toFixed(4)
   }
