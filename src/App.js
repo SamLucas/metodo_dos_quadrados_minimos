@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import QuadradosMinimos from './QuadradosMinimos';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
@@ -9,8 +9,6 @@ import {
   Header,
   ContentInputXY,
   ContentInputJson,
-  TableXY,
-  TableResult,
   TextResponse,
   TextSepator,
   ContentGraph,
@@ -20,7 +18,9 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import IconTrash from "./assets/trash.png"
+import TabelaPontos from './components/tabelaPontos';
+import TabelaResultado from './components/tabelaResultado';
+
 import IconGitHub from "./assets/github.png"
 
 function App() {
@@ -89,6 +89,8 @@ function App() {
     { x: 7.8, y: 3.3, newY: '3.7606', newX: '-0.4606' }
   ]
 
+  const TextPlaceholder = `Adicione seus pontos em formato json: \n{\n   "x": [0.3, 2.7, 4.5, 5.9, 7.8],\n   "y": [1.8, 1.9, 3.1, 3.9, 3.3]\n}`
+
   return (
     <Container>
       <Side>
@@ -98,7 +100,6 @@ function App() {
             <p>Uma técnica de otimização matemática que procura encontrar o melhor ajuste para um conjunto de dados tentando minimizar a soma dos quadrados das diferenças entre o valor estimado e os dados observados.</p>
             <p>Adicione novos valores na tabela para realizar o cálculo da equação:</p>
           </Header>
-
 
           <ContentInputXY>
             <input type="number" id="inputX" onChange={e => setX(e.target.value)} />
@@ -116,93 +117,26 @@ function App() {
               id="jsonInput"
               cols="30"
               rows="7"
-              placeholder={`Adicione seus pontos em formato json: 
-{
-   "x": [0.3, 2.7, 4.5, 5.9, 7.8],
-   "y": [1.8, 1.9, 3.1, 3.9, 3.3]
-}`} ></textarea>
+              placeholder={TextPlaceholder}
+            />
             <button onClick={registerNewPointsTextArea}>Adicionar</button>
           </ContentInputJson>
 
-          {points.length > 0 && (
-            <TableXY>
-              <h1>Pontos adicionados</h1>
-              <p>Os ponmtos adicionados são calculados altomáticamente.</p>
-
-              <div className="row">
-
-                <di className="header">
-                  <div className="headerPoints">X</div>
-                  <div className="headerPoints">Y</div>
-                </di>
-
-                <div className="contentPoints">
-                  {points.map((e, idx) =>
-                    <div className="contentPointsAdd">
-                      <p className="ContentValue">{e.x}</p>
-                      <p className="ContentValue">{points[idx].y}</p>
-                      <div className="ButtonRemove" onClick={() => removeData(idx)} >
-                        <img src={IconTrash} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </TableXY>
-          )}
-
-          {points.length > 0 && (
-            <TableResult>
-              <h1>Resultado</h1>
-              <p>Ajuste linear por Método dos Quadrados Mínimos para os pontos:</p>
-              <table>
-                <thead>
-                  <tr>
-                    <th>i</th>
-                    <th>x</th>
-                    <th>y</th>
-                    <th>x²</th>
-                    <th>xy</th>
-                    <th>µ</th>
-                    <th>d</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {dataGraph.map((e, idx) => (
-                    <tr>
-                      <td>{idx}</td>
-                      <td>{e.x}</td>
-                      <td>{e.y}</td>
-                      <td>{e.xQuadrado}</td>
-                      <td>{e.xy}</td>
-                      <td>{e.newY}</td>
-                      <td>{e.newX}</td>
-                    </tr>
-                  ))}
-                  <tr>
-                    <td>Total</td>
-                    <td>{additionalInformation.totalX}</td>
-                    <td>{additionalInformation.totalY}</td>
-                    <td>{additionalInformation.totalX2}</td>
-                    <td>{additionalInformation.totalXY}</td>
-                    <td>{additionalInformation.totalU}</td>
-                    <td>{additionalInformation.totalD}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </TableResult>
-          )}
-
-          {points.length > 0 && (
+          {points.length > 0 && <>
+            <TabelaPontos points={points} removeData={removeData} />
+            <TabelaResultado
+              dataGraph={dataGraph}
+              additionalInformation={additionalInformation}
+            />
             <TextResponse>
               D({additionalInformation?.B1}; {additionalInformation?.B0}) = {additionalInformation?.SomaQuadradoDistacia}
             </TextResponse>
-          )}
+          </>}
         </div>
 
         <Footer>
           <p>Desenvolvido por <a target="_blank" href="https://github.com/samlucas">Samuel Lucas</a></p>
-          <img src={IconGitHub} alt="" /><br />
+          <img src={IconGitHub} alt="githubicon" /><br />
         </Footer>
 
       </Side>
