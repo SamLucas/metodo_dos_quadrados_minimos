@@ -119,10 +119,6 @@ function App() {
               cols="30"
               rows="7"
               placeholder={TextPlaceholder}
-              value={`{
-                "x": [3.5 ,3.7 ,3.8 ,4.0 ,4.1 ,4.3 ,4.4 ],
-                "y": [11.72,12.02,12.02,11.85,12.02,11.85,11.85,11.85]
-              }`}
             />
             <button onClick={registerNewPointsTextArea}>Adicionar e Calcular</button>
           </ContentInputJson>
