@@ -6,8 +6,9 @@ export const TableXY = styled.div`
   width: 100%;
   height: 25vh;
 
-  margin-top: 40px;
+  margin: 50px 0px 70px;
 
+ 
   .row {
 
     display: flex;
@@ -36,6 +37,15 @@ export const TableXY = styled.div`
       flex-direction: row;
 
       overflow: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+
 
       .contentPointsAdd {
 

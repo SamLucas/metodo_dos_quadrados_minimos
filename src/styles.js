@@ -4,9 +4,6 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  height: 100vh;
-  padding: 0px;
-
 `;
 
 export const Side = styled.div`
@@ -18,7 +15,19 @@ export const Side = styled.div`
 
   overflow: scroll;
 
-  padding: 40px;
+  padding: 0px 40px;
+
+  height: 100vh;
+
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
 `;
 
 export const Header = styled.div`
@@ -27,6 +36,7 @@ export const Header = styled.div`
   }
 
   h1 {
+    margin-top: 30px;
     margin-bottom: 10px;
   }
 `;
