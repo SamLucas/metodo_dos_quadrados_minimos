@@ -176,7 +176,6 @@ function App() {
             />
 
             <p>
-              Exemplos de entrada:
               <a onClick={() => setTextExample(exempleData[0])}>Exemplo 01</a>
               <a onClick={() => setTextExample(exempleData[1])}>Exemplo 02</a>
               <a onClick={() => setTextExample(exempleData[2])}>Exemplo 03</a>

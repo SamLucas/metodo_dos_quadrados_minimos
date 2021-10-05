@@ -100,7 +100,10 @@ export const ContentInputJson = styled.div`
   }
 
   p {
+
     margin: 20px 0px;
+
+    line-height: 40px;
 
     a {
       font-weight: bold;
