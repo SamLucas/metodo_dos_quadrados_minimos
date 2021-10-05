@@ -2,9 +2,12 @@ import styled from 'styled-components';
 
 export const TableResultado = styled.div`
 
+
   table {
-    width: 100%;
     text-align: center;
+    width: 100%;
+
+    /* margin-right: 100px; */
 
     thead {
     }

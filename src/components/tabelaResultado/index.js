@@ -10,7 +10,7 @@ function TabelaResultado({ dataGraph, additionalInformation }) {
       <table>
         <thead>
           <tr>
-            <th>i</th>
+            {/* <th>i</th> */}
             <th>x</th>
             <th>y</th>
             <th>x²</th>
@@ -22,7 +22,7 @@ function TabelaResultado({ dataGraph, additionalInformation }) {
         <tbody>
           {dataGraph.map((e, idx) => (
             <tr>
-              <td>{idx}</td>
+              {/* <td>{idx}</td> */}
               <td>{e.x}</td>
               <td>{e.y}</td>
               <td>{e.xQuadrado}</td>
@@ -32,7 +32,7 @@ function TabelaResultado({ dataGraph, additionalInformation }) {
             </tr>
           ))}
           <tr>
-            <td>Total</td>
+            {/* <td>Total</td> */}
             <td>{additionalInformation.totalX}</td>
             <td>{additionalInformation.totalY}</td>
             <td>{additionalInformation.totalX2}</td>
