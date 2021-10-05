@@ -66,8 +66,10 @@ export const Header = styled.div`
 
 export const ContentInputXY = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 32% 32% 32%;
   margin: 10px 0px;
+
+  justify-content: space-around;
 
   gap: 10px;
 
@@ -95,6 +97,31 @@ export const ContentInputJson = styled.div`
     border: 1px solid #cecece;
     border-radius: 10px;
     max-width: 100%;
+  }
+
+  p {
+    margin: 20px 0px;
+
+    a {
+      font-weight: bold;
+      color: #2d4c72;
+      padding: 5px;
+      background-color: rgba(56,96,143,0.1);
+      border-radius: 10px;
+      
+      text-decoration: none;
+      margin: 0px 5px;
+
+      border: none;
+      border-radius: 5px;
+
+      cursor: pointer;
+
+      &.clear {
+        background-color: #2d4c72;
+        color: white;
+      }
+    }
   }
 
   button {

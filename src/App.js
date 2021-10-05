@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import QuadradosMinimos from './QuadradosMinimos';
+import QuadradosMinimos, { exempleData } from './QuadradosMinimos';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 import {
@@ -32,6 +32,8 @@ function App() {
   const [dataResizeWindow, setDataResizeWindow] = useState()
   const [heightGraph, setHeightGraph] = useState()
   const [widthGraph, setWidthGraph] = useState()
+
+  const [textExample, setTextExample] = useState("")
 
   const [X, setX] = useState('')
   const [Y, setY] = useState('')
@@ -169,27 +171,40 @@ function App() {
               cols="30"
               rows="7"
               placeholder={TextPlaceholder}
+              value={textExample}
+              onChange={e => setTextExample(e.target.value)}
             />
+
+            <p>
+              Exemplos de entrada:
+              <a onClick={() => setTextExample(exempleData[0])}>Exemplo 01</a>
+              <a onClick={() => setTextExample(exempleData[1])}>Exemplo 02</a>
+              <a onClick={() => setTextExample(exempleData[2])}>Exemplo 03</a>
+              <a className="clear" onClick={() => setTextExample("")}>Limpar</a>
+            </p>
+
             <button onClick={registerNewPointsTextArea}>Adicionar e Calcular</button>
           </ContentInputJson>
 
-          {points.length > 0 && <>
-            <TabelaPontos points={points} removeData={removeData} />
-            <TabelaResultado
-              dataGraph={dataGraph}
-              additionalInformation={additionalInformation}
-            />
-            <TextResponse>
-              D({additionalInformation?.B1}; {additionalInformation?.B0}) = {additionalInformation?.SomaQuadradoDistacia}
-            </TextResponse>
-          </>}
-        </div>
+          {
+            points.length > 0 && <>
+              <TabelaPontos points={points} removeData={removeData} />
+              <TabelaResultado
+                dataGraph={dataGraph}
+                additionalInformation={additionalInformation}
+              />
+              <TextResponse>
+                D({additionalInformation?.B1}; {additionalInformation?.B0}) = {additionalInformation?.SomaQuadradoDistacia}
+              </TextResponse>
+            </>
+          }
+        </div >
 
         <Footer>
           <p>Desenvolvido por <a target="_blank" href="https://github.com/samlucas">Samuel Lucas</a></p>
           <img src={IconGitHub} alt="githubicon" /><br />
         </Footer>
-      </Side>
+      </Side >
 
       <ContentGraph id="contentGrap">
         <LineChart
@@ -209,7 +224,7 @@ function App() {
 
       <ToastContainer />
 
-    </Container>
+    </Container >
   );
 }
 
