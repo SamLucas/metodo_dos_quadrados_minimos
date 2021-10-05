@@ -2,32 +2,55 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 1fr;
+  
+  @media (min-width: 1500px) {
+    grid-template-columns: 40% 1fr;
 
+  }
+
+  @media (min-width: 2000px) {
+    grid-template-columns: 30% 1fr;
+
+  }
+
+  @media (max-width: 1090px) {
+    display: flex;
+    flex: 1;
+
+    flex-direction: column;
+  }
 `;
 
 export const Side = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-between;
-  align-items: flex-end;
-
-  overflow: scroll;
+  display: block;
+  max-width: 100%;
 
   padding: 0px 40px;
 
-  height: 100vh;
-
-
-  &::-webkit-scrollbar {
-    display: none;
+  @media (max-width: 530px) {
+    padding: 0px 10px;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  .contentData {
+    max-width: 100%;
+  }
+`;
 
+
+export const ContentGraph = styled.div`
+
+  @media (min-width: 1090px) {  
+    position: fixed;
+    top: 20px;
+    bottom: 0;
+    right: 20px;
+    
+  }  
+
+  @media (max-width: 1090px) {  
+    padding-bottom: 20px;
+  }  
 `;
 
 export const Header = styled.div`
@@ -101,8 +124,6 @@ export const TextSepator = styled.p`
 
   font-family: 'Dancing Script', cursive;
 `;
-
-export const ContentGraph = styled.div``;
 
 export const Footer = styled.div`
 

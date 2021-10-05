@@ -29,6 +29,10 @@ function App() {
   const [dataGraph, setDataGraph] = useState([])
   const [additionalInformation, setAdditionalInformation] = useState(null)
 
+  const [dataResizeWindow, setDataResizeWindow] = useState()
+  const [heightGraph, setHeightGraph] = useState()
+  const [widthGraph, setWidthGraph] = useState()
+
   const [X, setX] = useState('')
   const [Y, setY] = useState('')
 
@@ -66,7 +70,10 @@ function App() {
     }
   }
 
-  const removeData = indice => setPoints(s => s.filter((i, idx) => idx !== indice))
+  const removeData = indice => {
+    setPoints(s => s.filter((i, idx) => idx !== indice))
+    notifySuccess(`Os pontos selecionados foram deletados.`)
+  }
 
   const notify = (msg) => toast.error(msg, {
     position: "top-left",
@@ -78,9 +85,16 @@ function App() {
     progress: undefined,
   });
 
-  var widthGraph = (document.documentElement.clientWidth / 2) - 30
-  // var widthGraph = document.documentElement.clientWidth - 30
-  var heightGraph = document.documentElement.clientHeight - 30
+  const notifySuccess = (msg) => toast.success(msg, {
+    position: "top-left",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
 
   const initialState = [
     { x: 0.3, y: 1.8, newY: '1.7369', newX: '0.0631' },
@@ -92,9 +106,45 @@ function App() {
 
   const TextPlaceholder = `Adicione seus pontos em formato json: \n{\n   "x": [0.3, 2.7, 4.5, 5.9, 7.8],\n   "y": [1.8, 1.9, 3.1, 3.9, 3.3]\n}`
 
+  useEffect(() => {
+    const handleResize = () => setDataResizeWindow(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+  })
+
+  useEffect(() => {
+
+    let newWidthGraph
+    let newHeightGraph
+
+    if (dataResizeWindow < 1090 && dataResizeWindow > 0) {
+      newWidthGraph = dataResizeWindow - 30
+      newHeightGraph = ((dataResizeWindow / 1.5) - 30)
+    } else if (dataResizeWindow > 1500) {
+
+      const totalWindow = document.documentElement.clientWidth
+      const totalSideBar = document.getElementById("SideBar").clientWidth
+
+      newWidthGraph = totalWindow - totalSideBar - 30
+      newHeightGraph = document.documentElement.clientHeight - 30
+
+    } else {
+      if (document.documentElement.clientWidth < 1090) {
+        newWidthGraph = document.documentElement.clientWidth
+        newHeightGraph = (document.documentElement.clientHeight / 2) - 30
+      } else {
+        newWidthGraph = (document.documentElement.clientWidth / 2)
+        newHeightGraph = document.documentElement.clientHeight - 30
+      }
+    }
+
+    setHeightGraph(newHeightGraph)
+    setWidthGraph(newWidthGraph)
+  }, [dataResizeWindow])
+
+
   return (
     <Container>
-      <Side>
+      <Side id="SideBar">
         <div className="contentData">
           <Header>
             <h1>Método dos Quadrados Mínimos</h1>
@@ -139,11 +189,14 @@ function App() {
           <p>Desenvolvido por <a target="_blank" href="https://github.com/samlucas">Samuel Lucas</a></p>
           <img src={IconGitHub} alt="githubicon" /><br />
         </Footer>
-
       </Side>
 
-      <ContentGraph>
-        <LineChart width={widthGraph} height={heightGraph} data={dataGraph}>
+      <ContentGraph id="contentGrap">
+        <LineChart
+          width={widthGraph}
+          height={heightGraph}
+          data={dataGraph}
+        >
           <Line type="monotone" dataKey="y" stroke="#8884d8" />
           <Line type="monotone" dataKey="newY" stroke="red" />
           <XAxis dataKey="x" />

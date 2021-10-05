@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
-
 export const TableXY = styled.div`
 
+  display: block;
+  position: relative;
+  
   width: 100%;
-  height: 25vh;
 
-  margin: 50px 0px 70px;
-
- 
+  margin: 50px 0px;
+  
   .row {
-
     display: flex;
     flex-direction: row;
+
+    justify-content: space-around;
 
     .header {
       .headerPoints {
@@ -29,23 +30,28 @@ export const TableXY = styled.div`
         margin: 5px 0px;
         border-radius: 5px;
       }
+
+      .pointer {
+        cursor: pointer;
+      }
     }
 
     .contentPoints {
-
+    
       display: flex;
       flex-direction: row;
+      position: relative;
 
-      overflow: scroll;
+      width: 83%;
+      height: 140px;
+      
+      overflow-x: auto;
+
+      scrollbar-width: none;
 
       &::-webkit-scrollbar {
         display: none;
-      }
-
-      /* Hide scrollbar for IE, Edge and Firefox */
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-
+      } 
 
       .contentPointsAdd {
 
@@ -64,6 +70,7 @@ export const TableXY = styled.div`
           }
 
           .ButtonRemove {
+            
             display: flex;
             justify-content: center;
             align-items: flex-end;
